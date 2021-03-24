@@ -18,5 +18,10 @@
     "name": "Stack Overflow Blog",
     "site_url": "https://stackoverflow.blog",
     "feed_url": "https://stackoverflow.blog/feed"
+  },
+  "python_insider": {
+    "name": "Python Insider",
+    "site_url": "https://blog.python.org/",
+    "feed_url": "https://feeds.feedburner.com/PythonInsider"
   }
 }

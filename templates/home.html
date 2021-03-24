@@ -14,14 +14,11 @@
         <div class="row">
             {% for j in range(items_per_row) %}
             <!-- Add columns to the row. Each column contains feed.html -->
-                <!-- Get the required Reader object from the feed dictionary -->
+                <!-- Get the key of the current feed's reader -->
                 {% set current_feed_key = feeds_dict_keys.pop() %}
-                {% set reader = feeds_dict[current_feed_key] %}
 
-                <!-- Pass the Reader object to feed.html -->
-                {% with reader=reader, being_included=True %}
-                    {% include 'feed.html' %}
-                {% endwith %}
+                <!-- Call show_feed() and render the returned html as safe -->
+                {{ show_feed(current_feed_key, 6, being_included=True)|safe }}
 
             {% endfor %}
         </div>
@@ -35,12 +32,9 @@
             <!-- Add columns to the row. Each column contains feed.html -->
                 <!-- Get the required Reader object from the feed dictionary -->
                 {% set current_feed_key = feeds_dict_keys.pop() %}
-                {% set reader = feeds_dict[current_feed_key] %}
 
-                <!-- Pass the Reader object to feed.html -->
-                {% with reader=reader, show_more_link=True %}
-                    {% include 'feed.html' %}
-                {% endwith %}
+                <!-- Call show_feed() and render the returned html as safe -->
+                {{ show_feed(current_feed_key, 6, being_included=True)|safe }}
 
             {% endfor %}
         </div>
