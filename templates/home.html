@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% set active_page = 'home' %}
+
+{% block head %}
+    <title>Web Aggregator</title>
+{% endblock %}
+
+{% block body%}
+    <div class="container-sm mt-3 text-light centered">
+        <p>A simple web aggregator</p>
+
+        {% for i in range(row_count) %}
+        <!-- Add rows to the grid -->
+        <div class="row">
+            {% for j in range(items_per_row) %}
+            <!-- Add columns to the row. Each column contains feed.html -->
+                <!-- Get the required Reader object from the feed dictionary -->
+                {% set current_feed_key = feeds_dict_keys.pop() %}
+                {% set reader = feeds_dict[current_feed_key] %}
+
+                <!-- Pass the Reader object to feed.html -->
+                {% with reader=reader, being_included=True %}
+                    {% include 'feed.html' %}
+                {% endwith %}
+
+            {% endfor %}
+        </div>
+        {% endfor %}
+
+
+        <!-- Add a row for any leftover items (e.g. 8 feeds @ 3 feeds per row needs a leftovers row with 2 items -->
+        {% if leftover_items %}
+        <div class="row">
+            {% for i in range(leftover_items) %}
+            <!-- Add columns to the row. Each column contains feed.html -->
+                <!-- Get the required Reader object from the feed dictionary -->
+                {% set current_feed_key = feeds_dict_keys.pop() %}
+                {% set reader = feeds_dict[current_feed_key] %}
+
+                <!-- Pass the Reader object to feed.html -->
+                {% with reader=reader, show_more_link=True %}
+                    {% include 'feed.html' %}
+                {% endwith %}
+
+            {% endfor %}
+        </div>
+        {% endif %}
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{
+  "bbc": {
+    "name": "BBC News Top Stories UK",
+    "site_url": "https://www.bbc.co.uk/news",
+    "feed_url": "http://feeds.bbci.co.uk/news/rss.xml?edition=uk"
+  },
+  "wired": {
+    "name": "Wired Top Stories",
+    "site_url": "https://www.wired.co.uk/",
+    "feed_url": "https://www.wired.com/feed/rss"
+  },
+  "rockpapershotgun": {
+    "name": "Rock Paper Shotgun",
+    "site_url": "https://www.rockpapershotgun.com/latest",
+    "feed_url": "https://www.rockpapershotgun.com/feed"
+  },
+  "stackoverflow_blog": {
+    "name": "Stack Overflow Blog",
+    "site_url": "https://stackoverflow.blog",
+    "feed_url": "https://stackoverflow.blog/feed"
+  }
+}

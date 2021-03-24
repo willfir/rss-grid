@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Feed: {{reader.name}}</title>
+{% endblock %}
+
+
+{% block nav %}
+<!-- Hide the navbar if this page is being included inside another template -->
+{% if being_included %}
+<!-- Do nothing -->
+{% else %}
+<!-- Use the navbar block from base.html -->
+    {{ super() }}
+{% endif %}
+
+{% endblock %}
+
+
+{% block body%}
+    <div class="col mt-3 text-light centered"><a href="{{reader.site_url}}">{{ reader.name }}</a>
+        <ul>
+            {% for entry in reader.entries %}
+            <li><a href="{{ entry['link'] }}" class="text-light">{{ entry['title'] }}</a></li>
+            {% endfor %}
+            {% if being_included %}
+            <li><a href="{{url_for('routes.show_feed', feed=reader.identifier, num_entries=999)}}">See more...</a></li>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}
