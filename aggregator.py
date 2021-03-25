@@ -5,6 +5,7 @@ from reader import Reader
 
 
 # Globals setup:
+main_settings = {}  # Dict for settings in main.json
 feed_settings = {}  # Dict to hold information from config file
 feed_dict = {}      # Dict to hold a reader object for each feed
 
@@ -47,7 +48,17 @@ get_feed_settings()
 for feed in feed_settings:
     get_reader(feed)
 
+with open('config/main.json') as f:
+    main_settings = json.load(f)
+
 aggregator_bp = Blueprint('routes', __name__, template_folder='templates')
+
+
+# Set up a context processor to inject the main_settings dict into all
+# templates, so we can use it in base.html
+@aggregator_bp.context_processor
+def pass_main_settings():
+    return dict(main_settings=main_settings)
 
 
 @aggregator_bp.route('/')

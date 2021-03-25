@@ -1,18 +1,28 @@
 {% extends 'base.html' %}
 
-{% block head %}
-    <title>Feed: {{reader.name}}</title>
+{% block base %}
+    {# Avoid repeating doctype, stylesheet link, etc. if this is being included in another page #}
+    {% if being_included %}
+        {# Do nothing #}
+    {% else %}
+        {# Use base.html #}
+        {{ super() }}
+    {% endif %}
+
+    {% block head %}
+        <title>Feed: {{reader.name}}</title>
+    {% endblock %}
 {% endblock %}
 
 
 {% block nav %}
-<!-- Hide the navbar if this page is being included inside another template -->
-{% if being_included %}
-<!-- Do nothing -->
-{% else %}
-<!-- Use the navbar block from base.html -->
-    {{ super() }}
-{% endif %}
+    {# Hide the navbar if this page is being included inside another template #}
+    {% if being_included %}
+        {# Do nothing #}
+    {% else %}
+        {# Use the navbar block from base.html #}
+        {{ super() }}
+    {% endif %}
 
 {% endblock %}
 
