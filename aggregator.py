@@ -72,16 +72,11 @@ def home():
         get_reader(feed)
 
     item_count = len(feed_dict)
-    items_per_row = 2
-    row_count = item_count // items_per_row
-    leftover_items = item_count % items_per_row
 
     return render_template('home.html',
                            feeds_dict_keys=list(feed_dict.keys()),
-                           row_count=row_count,
-                           items_per_row=items_per_row,
-                           leftover_items=leftover_items,
-                           show_feed=show_feed
+                           show_feed=show_feed,
+                           item_count=item_count
                            )
 
 

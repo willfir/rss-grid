@@ -28,7 +28,7 @@
 
 
 {% block body%}
-    <div class="col mt-3 text-light centered"><a href="{{reader.site_url}}">{{ reader.name }}</a>
+    <div class="col-md-6 mt-3 text-light centered"><a href="{{reader.site_url}}">{{ reader.name }}</a>
         <ul>
             {% for entry in reader.entries %}
             <li><a href="{{ entry['link'] }}" class="text-light">{{ entry['title'] }}</a></li>

@@ -6,13 +6,13 @@
 {% endblock %}
 
 {% block body%}
-    <div class="container-sm mt-3 text-light centered">
+    <div class="container mt-3 text-light centered">
         <p>A simple web aggregator</p>
 
-        {% for i in range(row_count) %}
-        {# Add rows to the grid #}
+
+        {# Set up the grid #}
         <div class="row">
-            {% for j in range(items_per_row) %}
+            {% for j in range(item_count) %}
             {# Add columns to the row. Each column contains feed.html #}
                 {# Get the key of the current feed's reader #}
                 {% set current_feed_key = feeds_dict_keys.pop() %}
@@ -22,23 +22,8 @@
 
             {% endfor %}
         </div>
-        {% endfor %}
+{#        {% endfor %}#}
 
-
-        {# Add a row for any leftover items (e.g. 8 feeds @ 3 feeds per row needs a leftovers row with 2 items #}
-        {% if leftover_items %}
-        <div class="row">
-            {% for i in range(leftover_items) %}
-            {# Add columns to the row. Each column contains feed.html #}
-                {# Get the required Reader object from the feed dictionary #}
-                {% set current_feed_key = feeds_dict_keys.pop() %}
-
-                {# Call show_feed() and render the returned html as safe #}
-                {{ show_feed(current_feed_key, 6, being_included=True)|safe }}
-
-            {% endfor %}
-        </div>
-        {% endif %}
 
     </div>
 
